@@ -47,7 +47,7 @@ feature@async_destroy=enabled` (as an example) to enable specific
 ones.  By default, all features are enabled.
 
 I’m not going to document GRUB’s history of support.  It is somewhat
-more complicated---and personally, I’ve started using dedicated boot
+more complicated--and personally, I’ve started using dedicated boot
 pools stuck at version 28. More than good enough for GRUB and /boot.
 
 [width="30%",options="header"]
