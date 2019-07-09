@@ -1,0 +1,82 @@
+ZFS-on-Linux feature history
+============================
+
+It can be generally useful to create pools compatible with older
+versions of ZoL.
+
+I’m only counting release versions here, not release candidates nor
+interim commits.  Makes my life a little easier, and probably nobody
+is going to be running old pre-releases anyway.
+
+Before feature flags
+--------------------
+
+ZoL started life before Oracle’s acquisition of Sun and well before
+the last versions of OpenSolaris.  Usability of it back then was quite
+low, it didn’t even have the ZFS POSIX Layer yet (the part that lets
+you use it as a regular file system).
+
+Gaps in the version sequences mean no changes from the prior.
+
+[width="20%",options="header"]
+|====
+|ZoL version | zpool version | ZFS version
+|0.4.0 | 10 | 3
+|0.4.1 | 11 | 3
+|0.4.2 | 14 | 3
+|0.4.5 | 16 | 4
+|0.4.6 | 18 | 4
+|0.5.0 | 26 | 5
+|0.5.1 | 28 | 5
+|====
+
+Feature flags
+-------------
+
+Introduced first in ZFS-on-Linux 0.6.1, feature flags allow on-disk
+format changes in a manner that allows decentralized development
+between different ZFS implementations, rather than the monotomous
+number under Sun/Oracle.  The pool version is set to 5000 and implies
+that all features of pool v28 are supported, plus any additional flags
+that may be enabled.
+
+It isn’t well-documented which versions of ZoL added flags, and that’s
+why I’m writing this.  `zpool create -d` allows creating a pool with
+all flags disabled by default, and one may use `-o
+feature@async_destroy=enabled` (as an example) to enable specific
+ones.  By default, all features are enabled.
+
+I’m not going to document GRUB’s history of support.  It is somewhat
+more complicated---and personally, I’ve started using dedicated boot
+pools stuck at version 28. More than good enough for GRUB and /boot.
+
+[width="30%",options="header"]
+|====
+|Feature flag | Introduced in ZoL
+|async_destroy | 0.6.1
+|empty_bpobj | 0.6.1
+|lz4_compress | 0.6.1
+|bookmarks | 0.6.4
+|embedded_data | 0.6.4
+|enabled_txg | 0.6.4
+|extensible_dataset | 0.6.4
+|hole_birth | 0.6.4
+|spacemap_histogram | 0.6.4
+|filesystem_limits | 0.6.5
+|large_blocks | 0.6.5
+|edonr | 0.7.0
+|large_dnode | 0.7.0
+|multi_vdev_crash_dump | 0.7.0
+|sha512 | 0.7.0
+|skein | 0.7.0
+|usrobj_accounting | 0.7.0
+|allocation_classes | 0.8.0
+|bookmark_v2 | 0.8.0
+|device_removal | 0.8.0
+|encryption | 0.8.0
+|obsolete_counts | 0.8.0
+|project_quota | 0.8.0
+|resilver_defer | 0.8.0
+|spacemap_v2 | 0.8.0
+|zpool_checkpoint | 0.8.0
+|====
