@@ -1,8 +1,10 @@
-ZFS-on-Linux feature history
-============================
+OpenZFS feature history
+=======================
 
 It can be generally useful to create pools compatible with older
-versions of ZoL.
+versions of OpenZFS.  This implementation of ZFS was formerly
+ZFS-on-Linux, and the acronym ZoL is still used to reflect versions of
+the old name.
 
 I’m only counting release versions here, not release candidates nor
 interim commits.  Makes my life a little easier, and probably nobody
@@ -11,10 +13,10 @@ is going to be running old pre-releases anyway.
 Before feature flags
 --------------------
 
-ZoL started life before Oracle’s acquisition of Sun and well before
-the last versions of OpenSolaris.  Usability of it back then was quite
-low, it didn’t even have the ZFS POSIX Layer yet (the part that lets
-you use it as a regular file system).
+OpenZFS started life before Oracle’s acquisition of Sun and well
+before the last versions of OpenSolaris.  Usability of it back then
+was quite low, it didn’t even have the ZFS POSIX Layer yet (the part
+that lets you use it as a regular file system).
 
 Gaps in the version sequences mean no changes from the prior.
 
@@ -40,9 +42,9 @@ number under Sun/Oracle.  The pool version is set to 5000 and implies
 that all features of pool v28 are supported, plus any additional flags
 that may be enabled.
 
-It isn’t well-documented which versions of ZoL added flags, and that’s
-why I’m writing this.  `zpool create -d` allows creating a pool with
-all flags disabled by default, and one may use `-o
+It isn’t well-documented which versions of OpenZFS added flags, and
+that’s why I’m writing this.  `zpool create -d` allows creating a pool
+with all flags disabled by default, and one may use `-o
 feature@async_destroy=enabled` (as an example) to enable specific
 ones.  By default, all features are enabled.
 
@@ -52,7 +54,7 @@ pools stuck at version 28. More than good enough for GRUB and /boot.
 
 [width="30%",options="header"]
 |====
-|Feature flag | Introduced in ZoL
+|Feature flag | Introduced in OpenZFS
 |async_destroy | 0.6.1
 |empty_bpobj | 0.6.1
 |lz4_compress | 0.6.1
@@ -69,7 +71,7 @@ pools stuck at version 28. More than good enough for GRUB and /boot.
 |multi_vdev_crash_dump | 0.7.0
 |sha512 | 0.7.0
 |skein | 0.7.0
-|usrobj_accounting | 0.7.0
+|userobj_accounting | 0.7.0
 |allocation_classes | 0.8.0
 |bookmark_v2 | 0.8.0
 |device_removal | 0.8.0
@@ -79,4 +81,139 @@ pools stuck at version 28. More than good enough for GRUB and /boot.
 |resilver_defer | 0.8.0
 |spacemap_v2 | 0.8.0
 |zpool_checkpoint | 0.8.0
+|bookmark_written | 2.0.0
+|device_rebuild | 2.0.0
+|livelist | 2.0.0
+|log_spacemap | 2.0.0
+|redacted_datasets | 2.0.0
+|redaction_bookmarks | 2.0.0
+|zstd_compress | 2.0.0
 |====
+
+Complete `zpool create` lines
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ZoL 0.6.1
+^^^^^^^^^
+
+----
+zpool create -d \
+             -o feature@async_destroy=enabled \
+             -o feature@empty_bpobj=enabled \
+             -o feature@lz4_compress=enabled
+----
+
+ZoL 0.6.4
+^^^^^^^^^
+
+----
+zpool create -d \
+             -o feature@async_destroy=enabled \
+             -o feature@bookmarks=enabled \
+             -o feature@embedded_data=enabled \
+             -o feature@empty_bpobj=enabled \
+             -o feature@hole_birth=enabled \
+             -o feature@lz4_compress=enabled \
+             -o feature@spacemap_histogram=enabled
+----
+
+ZoL 0.6.5
+^^^^^^^^^
+
+----
+zpool create -d \
+             -o feature@async_destroy=enabled \
+             -o feature@bookmarks=enabled \
+             -o feature@embedded_data=enabled \
+             -o feature@empty_bpobj=enabled \
+             -o feature@filesystem_limits=enabled \
+             -o feature@hole_birth=enabled \
+             -o feature@large_blocks=enabled \
+             -o feature@lz4_compress=enabled \
+             -o feature@spacemap_histogram=enabled
+----
+
+ZoL 0.7.0
+^^^^^^^^^
+
+----
+zpool create -d \
+             -o feature@async_destroy=enabled \
+             -o feature@bookmarks=enabled \
+             -o feature@edonr=enabled \
+             -o feature@embedded_data=enabled \
+             -o feature@empty_bpobj=enabled \
+             -o feature@filesystem_limits=enabled \
+             -o feature@hole_birth=enabled \
+             -o feature@large_blocks=enabled \
+             -o feature@large_dnode=enabled \
+             -o feature@lz4_compress=enabled \
+             -o feature@multi_vdev_crash_dump=enabled \
+             -o feature@sha512=enabled \
+             -o feature@skein=enabled \
+             -o feature@spacemap_histogram=enabled \
+             -o feature@userobj_accounting=enabled
+----
+
+ZoL 0.8.0
+^^^^^^^^^
+
+----
+zpool create -d \
+             -o feature@allocation_classes=enabled \
+             -o feature@async_destroy=enabled \
+             -o feature@edonr=enabled \
+             -o feature@embedded_data=enabled \
+             -o feature@empty_bpobj=enabled \
+             -o feature@encryption=enabled \
+             -o feature@filesystem_limits=enabled \
+             -o feature@hole_birth=enabled \
+             -o feature@large_blocks=enabled \
+             -o feature@large_dnode=enabled \
+             -o feature@lz4_compress=enabled \
+             -o feature@multi_vdev_crash_dump=enabled \
+             -o feature@obsolete_counts=enabled \
+             -o feature@project_quota=enabled \
+             -o feature@resilver_defer=enabled \
+             -o feature@sha512=enabled \
+             -o feature@skein=enabled \
+             -o feature@spacemap_histogram=enabled \
+             -o feature@spacemap_v2=enabled \
+             -o feature@userobj_accounting=enabled \
+             -o feature@zpool_checkpoint=enabled
+----
+
+OpenZFS 2.0.0
+^^^^^^^^^^^^^
+
+----
+zpool create -d \
+             -o feature@bookmark_written=enabled \
+             -o feature@device_rebuild=enabled \
+             -o feature@livelist=enabled \
+             -o feature@log_spacemap=enabled \
+             -o feature@redacted_datasets=enabled \
+             -o feature@redaction_bookmarks=enabled \
+             -o feature@zstd_compress=enabled
+             -o feature@allocation_classes=enabled \
+             -o feature@async_destroy=enabled \
+             -o feature@edonr=enabled \
+             -o feature@embedded_data=enabled \
+             -o feature@empty_bpobj=enabled \
+             -o feature@encryption=enabled \
+             -o feature@filesystem_limits=enabled \
+             -o feature@hole_birth=enabled \
+             -o feature@large_blocks=enabled \
+             -o feature@large_dnode=enabled \
+             -o feature@lz4_compress=enabled \
+             -o feature@multi_vdev_crash_dump=enabled \
+             -o feature@obsolete_counts=enabled \
+             -o feature@project_quota=enabled \
+             -o feature@resilver_defer=enabled \
+             -o feature@sha512=enabled \
+             -o feature@skein=enabled \
+             -o feature@spacemap_histogram=enabled \
+             -o feature@spacemap_v2=enabled \
+             -o feature@userobj_accounting=enabled \
+             -o feature@zpool_checkpoint=enabled \
+----
