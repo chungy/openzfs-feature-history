@@ -112,6 +112,8 @@ zpool create -d \
              -o feature@bookmarks=enabled \
              -o feature@embedded_data=enabled \
              -o feature@empty_bpobj=enabled \
+             -o feature@enabled_txg=enabled \
+             -o feature@extensible_dataset=enabled \
              -o feature@hole_birth=enabled \
              -o feature@lz4_compress=enabled \
              -o feature@spacemap_histogram=enabled
@@ -126,6 +128,8 @@ zpool create -d \
              -o feature@bookmarks=enabled \
              -o feature@embedded_data=enabled \
              -o feature@empty_bpobj=enabled \
+             -o feature@enabled_txg=enabled \
+             -o feature@extensible_dataset=enabled \
              -o feature@filesystem_limits=enabled \
              -o feature@hole_birth=enabled \
              -o feature@large_blocks=enabled \
@@ -143,6 +147,8 @@ zpool create -d \
              -o feature@edonr=enabled \
              -o feature@embedded_data=enabled \
              -o feature@empty_bpobj=enabled \
+             -o feature@enabled_txg=enabled \
+             -o feature@extensible_dataset=enabled \
              -o feature@filesystem_limits=enabled \
              -o feature@hole_birth=enabled \
              -o feature@large_blocks=enabled \
@@ -162,10 +168,15 @@ ZoL 0.8.0
 zpool create -d \
              -o feature@allocation_classes=enabled \
              -o feature@async_destroy=enabled \
+             -o feature@bookmark_v2=enabled \
+             -o feature@bookmarks=enabled \
+             -o feature@device_removal=enabled \
              -o feature@edonr=enabled \
              -o feature@embedded_data=enabled \
              -o feature@empty_bpobj=enabled \
+             -o feature@enabled_txg=enabled \
              -o feature@encryption=enabled \
+             -o feature@extensible_dataset=enabled \
              -o feature@filesystem_limits=enabled \
              -o feature@hole_birth=enabled \
              -o feature@large_blocks=enabled \
@@ -190,12 +201,17 @@ OpenZFS 2.0.0
 zpool create -d \
              -o feature@allocation_classes=enabled \
              -o feature@async_destroy=enabled \
+             -o feature@bookmark_v2=enabled \
              -o feature@bookmark_written=enabled \
+             -o feature@bookmarks=enabled \
              -o feature@device_rebuild=enabled \
+             -o feature@device_removal=enabled \
              -o feature@edonr=enabled \
              -o feature@embedded_data=enabled \
              -o feature@empty_bpobj=enabled \
+             -o feature@enabled_txg=enabled \
              -o feature@encryption=enabled \
+             -o feature@extensible_dataset=enabled \
              -o feature@filesystem_limits=enabled \
              -o feature@hole_birth=enabled \
              -o feature@large_blocks=enabled \
