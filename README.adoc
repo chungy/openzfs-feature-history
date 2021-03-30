@@ -1,6 +1,13 @@
 OpenZFS feature history
 =======================
 
+NOTE: *This document is obsolete as of OpenZFS 2.1.0.* The
+`compatibility` property may be used with `zpool create` or `zpool
+set` to force the software to restrict itself from enabling features
+on create or upgrade times.  OpenZFS versions 2.1.0 and newer ship
+with several files that are equivalent to the create commands at the
+bottom of the document, and are much easier to use.
+
 It can be generally useful to create pools compatible with older
 versions of OpenZFS.  This implementation of ZFS was formerly
 ZFS-on-Linux, and the acronym ZoL is still used to reflect versions of
